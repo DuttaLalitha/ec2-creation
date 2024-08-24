@@ -1,15 +1,15 @@
 # ec2-creation
 ```hcl
 
-module "aws_vpc" {
-  source = "git::https://github.com/DuttaLalitha/ec2-creation.git"
+resource "aws_instance" "web" {
+  ami           = "ami-0a0e5d9c7acc336f1"
+  key_name = "keypairfirst"
+  instance_type = "t2.micro"
+  security_groups = [aws_default_security_group.default.id]
+  subnet_id = aws_subnet.main.id
+  #user_data = file("applications.sh")
 
-  cidr_block= "10.40.0.0/16"
-  aws_vpc= "practise"
-  aws_subnet1_cidr_block= "10.40.0.0/17"
-  aws_subnet1= "practise_subnet"
-  igw= "practise_igw"
-  aws_sg= "practise_sg"
-  aws_rt= "practise_rt"
-
+  tags = {
+    Name = "aws_vpc_instance"
+  }
 }
