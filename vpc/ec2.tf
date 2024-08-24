@@ -4,7 +4,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   security_groups = ["sg-040772ea5516a2cf9"]
   subnet_id = aws_subnet.main.id
-  user_data = file("applications.sh")
+  #user_data = file("applications.sh")
 
   tags = {
     Name = "aws_vpc_instance"
